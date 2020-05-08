@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="res/style.css">
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="res/skulpt.min.js"></script> 
+    <script src="res/skulpt-stdlib.js"></script>
+</head>
+<body>
+    <header>
+        <i class="fa fa-home"></i>
+    </header>
+    <div class="mainContainer" id="mctn">
+        <div class="leftContainer" id="editorContainer"></div>
+        <div class="rightContainer">
+            <button onclick="runCode()">运行</button>
+            <button onclick="screenShot()">截图</button>
+            <pre id="outputContainer"></pre>
+            <div id="turtleCanvas"></div>
+        </div>
+    </div>
+</body>
+<footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+    <script src="res/script.js"></script>
+</footer>

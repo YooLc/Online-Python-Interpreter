@@ -1,0 +1,24 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.mainContainer {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+}
+
+.leftContainer {
+    width: 66%;
+    min-width: 800px;
+}
+
+.rightContainer {
+    width: 34%;
+    display: flex;
+    flex-direction: column;
+}
