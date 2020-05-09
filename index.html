@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<header>
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Python 在线编程">
+    <meta name="theme" content="dark">
+    <meta name="keywords" content="Python,在线编程">
+    <title>Python 在线编程</title>
     <link rel="stylesheet" href="res/style.css">
-</header>
+</head>
 <body>
     <div class="desc">
-        <i class="fa fa-code"></i>  Python 在线编程
+        <i class="fa fa-code"></i> Python 在线编程
+    </div>
+    <div class="ctlPanel">
+        <label class="ctlbtn" onclick="runCode()"> <i class="fa fa-caret-right"></i> 运行</label>
+        <label class="ctlbtn" onclick="screenShot()"> <i class="fa fa-camera"></i> 截图</label>
+        <label class="ctlbtn" onclick="dlCode()"> <i class="fa fa-download"></i> 下载</label>
+        <label class="ctlbtn" onclick="toggleMode()"> <i class="fa fa-lightbulb"></i></label>
     </div>
     <div class="mainContainer" id="mctn">
         <div class="leftContainer" id="editorContainer"></div>
         <div class="rightContainer">
-            <div class="ctlPanel">
-                <button onclick="runCode()">运行</button>
-                <button onclick="screenShot()">截图</button>
-            </div>
-            <pre id="outputContainer"></pre>
-            <div id="turtleCanvas"></div>
+            <pre id="outputContainer" title="程序输出"></pre>
+            <div id="turtleCanvas" title="海龟图"></div>
         </div>
     </div>
 </body>

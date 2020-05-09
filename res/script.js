@@ -20,11 +20,53 @@ function screenShot() {
         scale: s
     }).then(function(canvas) {
         var a = document.createElement('a');
-        
         a.href = canvas.toDataURL("image/png");
         a.download = "code-" + getFormatTime() + ".png";
         a.click();
     });
+}
+
+// 下载代码
+// Reference: https://www.jianshu.com/p/40cfe9a12f9e
+function dlCode() {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(window.editor.getValue()));
+    pom.setAttribute('download', "code-" + getFormatTime() + ".py");
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    } else {
+        pom.click();
+    }
+}
+
+// 切换白天模式，写的不太好看....
+function toggleMode() {
+    var curMode = document.getElementsByTagName('meta')['theme'];
+    if (curMode.content == "dark") {
+        var body = document.getElementsByTagName('div');
+        for (i = 0; i < body.length; i++) {
+            body[i].classList.add("light");
+            for (j = 0; j < body[i].childElementCount; j++) {
+                body[i].children[j].classList.add("light");
+            }
+        }
+        document.getElementsByTagName('body')[0].style.backgroundColor='#fff';
+        monaco.editor.setTheme("vs");
+        curMode.content = "light";
+    } else {
+        var body = document.getElementsByTagName('div');
+        for (i = 0; i < body.length; i++) {
+            body[i].classList.remove("light");
+            for (j = 0; j < body[i].childElementCount; j++) {
+                body[i].children[j].classList.remove("light");
+            }
+        }
+        document.getElementsByTagName('body')[0].style.backgroundColor='#0d0d0d';
+        monaco.editor.setTheme("vs-darker");
+        curMode.content = "dark";
+    }
 }
 
 // Microsoft 的 Monaco Editor
@@ -48,10 +90,12 @@ require(['vs/editor/editor.main'], () => {
         }
     });
     // Initialize Editor 初始化
+    var d = new Date();
+    var t = d.toLocaleString();
     window.editor = monaco.editor.create(document.getElementById("editorContainer"), {
         theme: 'vs-darker',
         fontSize: "16px",
-        model: monaco.editor.createModel("print(2 ** 31 - 1)", "python"),
+        model: monaco.editor.createModel("# " + t, "python"),
         wordWrap: 'on',
         automaticLayout: true,
         scrollbar: {
@@ -77,6 +121,8 @@ function runCode() {
     var prog = window.editor.getValue(); 
     var mypre = document.getElementById("outputContainer"); 
     mypre.innerHTML = ''; 
+    var myCanvas = document.getElementById("turtleCanvas"); 
+    myCanvas.innerHTML = '';
     Sk.pre = "output";
     Sk.configure({output:outf, read:builtinRead}); 
     (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'turtleCanvas';
@@ -88,6 +134,11 @@ function runCode() {
     },
         function(err) {
         var errlog = document.getElementById("outputContainer"); 
-        errlog.innerHTML = mypre.innerHTML + "运行出错了(·.·)， 看看错误信息:\n" + err.toString(); 
+        var curMode = document.getElementsByTagName('meta')['theme'];
+        if (curMode.content == "dark") {
+            errlog.innerHTML = mypre.innerHTML + "<div class=\"error\">运行出错了(·.·)， 看看错误信息:</div><div class=\"errorLog\">" + err.toString() + "</div>"; 
+        } else {
+            errlog.innerHTML = mypre.innerHTML + "<div class=\"error light\">运行出错了(·.·)， 看看错误信息:</div><div class=\"errorLog light\">" + err.toString() + "</div>"; 
+        }
     });
 }

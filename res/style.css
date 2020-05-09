@@ -1,13 +1,34 @@
 html, body {
     position: absolute;
+    background-color: #0d0d0d;
     margin: 0px 0px 0px 0px; /* 为什么不用绝对定位 body 位置会变 */
     padding: 0;
     height: 100vh;
     width: 100%;
 }
 
-pre {
-    margin: 0;
+.ctlPanel {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 60px;
+}
+
+.ctlbtn {
+    border: 3px solid #3c3c3c;
+    color: #ecdebd;
+    background-color: #252526;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 10px 0 10px;
+    padding: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+.ctlbtn:hover {
+    background-color: #3c3c3c;
+    color: #34d334;
 }
 
 .desc {
@@ -18,35 +39,135 @@ pre {
     font-size: 30px;
     font-weight: bold;
     background-color: #252526;
-    color: #d7ba7d;
+    color: #ecdebd;
+    user-select: none;
+    box-shadow: 0px 3px 5px 3px rgba(2, 2, 2, 0.692);
 }
 
-
 .mainContainer {
+    margin-top: 10px;
     display: flex;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 70px);
+    background-color: #0d0d0d;
 }
 
 .leftContainer {
     height: 100%;
     width: 66%;
+    min-width: 600px;
 }
 
 .rightContainer {
     width: 34%;
+    min-width: 400px;
     display: flex;
     flex-direction: column;
 }
 
-#outputContainer {
-    height: 50%;
-    background-color: black;
+#outputContainer, #turtleCanvas{
+    height: calc(50% - 20px);
+    margin: 10px;
+    padding: 15px;
+    font-size: 16px;
+    color: #fff;
+    border: 3px solid #2e2e2e;
+    border-radius: 10px;
+    overflow: auto;
 }
 
-#turtleCanvas {
-    height: 50%;
-    background-color: aqua;
+#outputContainer:hover, #turtleCanvas:hover {
+    background-color: #131313;
 }
+
+/* Reference: https://www.jianshu.com/p/da5d52630f36 */
+/*滚动条整体样式*/
+#outputContainer::-webkit-scrollbar, #turtleCanvas::-webkit-scrollbar {
+    width: 10px;
+    height: 1px;
+}
+/*滚动条滑块*/
+#outputContainer::-webkit-scrollbar-thumb, #turtleCanvas::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #797979;
+}
+/*滚动条轨道*/
+#outputContainer::-webkit-scrollbar-track, #turtleCanvas::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
+    border-radius: 10px;
+    background: #202020;
+}
+
+.error {
+    font-weight: bold;
+    padding: 5px;
+    color: #b81c27;
+}
+
+.errorLog {
+    font-weight: bold;
+    padding: 5px;
+    color: #ecdebd;
+}
+
+/* 白天模式 */
+.ctlbtn.light{
+    color: #000;
+    background-color: #eee;
+}
+
+.ctlbtn:hover.light {
+    background-color: #eee;
+    color: #34d334;
+    box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.2);
+}
+
+.desc.light {
+    background-color: #eee;
+    color: #000;
+}
+
+.mainContainer.light {
+   background-color: #fff;
+}
+
+#outputContainer.light, #turtleCanvas.light{
+    color: #000;
+    border: 3px solid #2e2e2e;
+}
+
+#outputContainer.light:hover, #turtleCanvas.light:hover {
+    background-color: #eee;
+}
+
+/*滚动条整体样式*/
+#outputContainer.light::-webkit-scrollbar, #turtleCanvas.light::-webkit-scrollbar {
+    width: 10px;
+    height: 1px;
+}
+/*滚动条滑块*/
+#outputContainer.light::-webkit-scrollbar-thumb, #turtleCanvas.light::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #505050;
+}
+/*滚动条轨道*/
+#outputContainer.light::-webkit-scrollbar-track, #turtleCanvas.light::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
+    border-radius: 10px;
+    background: #ccc;
+}
+
+.error.light {
+    padding: 5px;
+    color: #ff2a38;
+}
+
+.errorLog.light {
+    padding: 5px;
+    color: #ffb300;
+}
+
 /* 这些样式曾导致编辑器比想象中的长 */
 .monaco-editor .parameter-hints-widget {
     border: 0px;
