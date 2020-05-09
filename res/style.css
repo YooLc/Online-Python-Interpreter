@@ -1,24 +1,69 @@
 html, body {
-    margin: 0;
+    position: absolute;
+    margin: 0px 0px 0px 0px; /* 为什么不用绝对定位 body 位置会变 */
     padding: 0;
-    height: 100%;
+    height: 100vh;
+    width: 100%;
 }
+
+pre {
+    margin: 0;
+}
+
+.desc {
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    padding-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #252526;
+    color: #d7ba7d;
+}
+
 
 .mainContainer {
     display: flex;
-    position: absolute;
-    top: 20px;
-    bottom: 0;
-    left: 0;
+    height: calc(100vh - 60px);
 }
 
 .leftContainer {
+    height: 100%;
     width: 66%;
-    min-width: 800px;
 }
 
 .rightContainer {
     width: 34%;
     display: flex;
     flex-direction: column;
+}
+
+#outputContainer {
+    height: 50%;
+    background-color: black;
+}
+
+#turtleCanvas {
+    height: 50%;
+    background-color: aqua;
+}
+/* 这些样式曾导致编辑器比想象中的长 */
+.monaco-editor .parameter-hints-widget {
+    border: 0px;
+}
+
+.monaco-editor .parameter-hints-widget .signature {
+    padding: 0px;
+}
+
+.monaco-editor .suggest-widget {
+    border: 0px;
+}
+
+.monaco-editor.vs-dark .suggest-widget {
+    border: 0px;
+}
+
+.monaco-editor .rename-box {
+    top: 0;
 }

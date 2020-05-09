@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+<header>
     <link rel="stylesheet" href="res/style.css">
-    <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="res/skulpt.min.js"></script> 
-    <script src="res/skulpt-stdlib.js"></script>
-</head>
+</header>
 <body>
-    <header>
-        <i class="fa fa-home"></i>
-    </header>
+    <div class="desc">
+        <i class="fa fa-code"></i>  Python 在线编程
+    </div>
     <div class="mainContainer" id="mctn">
         <div class="leftContainer" id="editorContainer"></div>
         <div class="rightContainer">
-            <button onclick="runCode()">运行</button>
-            <button onclick="screenShot()">截图</button>
+            <div class="ctlPanel">
+                <button onclick="runCode()">运行</button>
+                <button onclick="screenShot()">截图</button>
+            </div>
             <pre id="outputContainer"></pre>
             <div id="turtleCanvas"></div>
         </div>
     </div>
 </body>
 <footer>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="res/skulpt.min.js"></script> 
+    <script src="res/skulpt-stdlib.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
     <script src="res/script.js"></script>
 </footer>

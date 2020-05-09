@@ -30,14 +30,21 @@ function screenShot() {
 // Microsoft 的 Monaco Editor
 // https://stackoverflow.com/questions/48934163/monaco-editor-set-font-size
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs' }});
+require.config({
+    'vs/nls': {
+        availableLanguages: {
+            '*': 'zh-cn'
+        }
+    }
+});
 require(['vs/editor/editor.main'], () => {
     // Dark Mode Theme 暗黑主题
     monaco.editor.defineTheme('vs-darker', {
         base: 'vs-dark',
         inherit: true,
-        rules: [{ background: '131313' }],
+        rules: [{ background: '0d0d0d' }],
         colors: {
-            'editor.background': '#131313'
+            'editor.background': '#0d0d0d'
         }
     });
     // Initialize Editor 初始化
