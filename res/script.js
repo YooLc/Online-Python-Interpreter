@@ -1,3 +1,38 @@
+function saveCookie(cookieName, cookieValue, cookieDays) {
+    if (cookieValue.length > 4050) return false;
+    var d = new Date();
+    d.setTime(d.getTime() + (cookieDays * 24 * 60 * 60 * 1000));
+    document.cookie = cookieName + "=" + cookieValue + ";expires=" + d.toGMTString();
+    return true;
+}
+
+function readCookie(cookieName) {
+    var name = cookieName + "=";
+    var cookies = document.cookie.split(';');
+    for (i = 0; i < cookies.length; i++) {
+        var t = cookies[i];
+        while (t.charAt(0) == ' ') t = t.substring(1, t.length);
+        if (t.indexOf(name) == 0) return t.substring(name.length, t.length);
+    }
+    return null;
+}
+
+function saveCode()
+{
+    var code = window.editor.getValue();
+    code = encode(code);
+    if (saveCookie('code', code, 10)) alert("已保存");
+    else alert("保存失败：代码过长，请尝试下载代码。");
+}
+
+function encode(str) {
+    return btoa(encodeURIComponent(str));
+}
+
+function decode(str) {
+    return decodeURIComponent(atob(str));
+}
+
 // 格式化时间戳
 function getFormatTime()
 {
@@ -92,10 +127,12 @@ require(['vs/editor/editor.main'], () => {
     // Initialize Editor 初始化
     var d = new Date();
     var t = d.toLocaleString();
+    var c = readCookie('code');
+    var str = c != null ? decode(c) : "# " + t;
     window.editor = monaco.editor.create(document.getElementById("editorContainer"), {
         theme: 'vs-darker',
         fontSize: "16px",
-        model: monaco.editor.createModel("# " + t, "python"),
+        model: monaco.editor.createModel(str, "python"),
         wordWrap: 'on',
         automaticLayout: true,
         scrollbar: {
@@ -104,6 +141,14 @@ require(['vs/editor/editor.main'], () => {
     }); 
     
 });
+
+document.onkeydown = function(e) {
+    if (e.ctrlKey && e.code == "KeyS") 
+    {
+        saveCode();
+        e.preventDefault();
+    }
+}
 
 // 这段代码是 Skulpt 官网上的，我们为什么不留下来呢 ¯\_(ツ)_/¯
 function outf(text) { 

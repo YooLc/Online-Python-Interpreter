@@ -48,7 +48,7 @@ html, body {
 .mainContainer {
     margin-top: 10px;
     display: flex;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 80px);
     background-color: #0d0d0d;
 }
 
