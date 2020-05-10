@@ -1,4 +1,7 @@
 # 在线 Python 编程 (Online Python Interpreter)
+## 截图
+![screenshot.png](screenshot.png)
+
 ## 功能
 - 适用于 Python 教学
 - 编辑 Python 代码，并输出结果（支持 Turtle 海龟图）
