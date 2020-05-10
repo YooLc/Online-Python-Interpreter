@@ -1,3 +1,16 @@
+function popInfo(text, type, timeout) {
+    var infoBar = document.getElementById("infoBar");
+    var info = document.createElement('p');
+    info.innerHTML = text + " <i class=\"fa fa-times\"></i>";
+    info.classList.add("info");
+    info.classList.add(type);
+    infoBar.appendChild(info);
+    if (timeout == null) timeout = 2000;
+    setTimeout(function (){
+        infoBar.removeChild(info);
+    }, timeout);
+}
+
 function saveCookie(cookieName, cookieValue, cookieDays) {
     if (cookieValue.length > 4050) return false;
     var d = new Date();
@@ -21,8 +34,8 @@ function saveCode()
 {
     var code = window.editor.getValue();
     code = encode(code);
-    if (saveCookie('code', code, 10)) alert("已保存");
-    else alert("保存失败：代码过长，请尝试下载代码。");
+    if (saveCookie('code', code, 10)) popInfo("已保存", "infoOK");
+    else popInfo("保存失败：代码过长，请尝试下载代码。", "infoErr");
 }
 
 function encode(str) {
@@ -59,6 +72,7 @@ function screenShot() {
         a.download = "code-" + getFormatTime() + ".png";
         a.click();
     });
+    popInfo("已截图", "infoOK");
 }
 
 // 下载代码
@@ -74,6 +88,7 @@ function dlCode() {
     } else {
         pom.click();
     }
+    popInfo("已开始下载，请选择保留文件", "infoOK", 3000);
 }
 
 // 切换白天模式，写的不太好看....
@@ -163,6 +178,7 @@ function builtinRead(x) {
 }
 
 function runCode() { 
+    popInfo("开始运行", "infoOK", 500);
     var prog = window.editor.getValue(); 
     var mypre = document.getElementById("outputContainer"); 
     mypre.innerHTML = ''; 
@@ -179,15 +195,18 @@ function runCode() {
         return Sk.importMainWithBody("<stdin>", false, prog, true);
     });
     myPromise.then(function(mod) {
+        popInfo("运行成功", "infoOK", 1000);
         console.log('Yeah! There\'s nothing wrong! when ' + getFormatTime() + ' ¯\_(ツ)_/¯');
     },
         function(err) {
         var errlog = document.getElementById("outputContainer"); 
         var curMode = document.getElementsByTagName('meta')['theme'];
+        popInfo("运行出错了= = 看看错误信息吧", "infoErr");
         if (curMode.content == "dark") {
-            errlog.innerHTML = mypre.innerHTML + "<div class=\"error\">运行出错了(·.·)， 看看错误信息:</div><div class=\"errorLog\">" + err.toString() + "</div>"; 
+            errlog.innerHTML = mypre.innerHTML + "<div class=\"errorLog\">" + err.toString() + "</div>"; 
         } else {
-            errlog.innerHTML = mypre.innerHTML + "<div class=\"error light\">运行出错了(·.·)， 看看错误信息:</div><div class=\"errorLog light\">" + err.toString() + "</div>"; 
+            errlog.innerHTML = mypre.innerHTML + "<div class=\"errorLog light\">" + err.toString() + "</div>"; 
         }
     });
+    
 }
