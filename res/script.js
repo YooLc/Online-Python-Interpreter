@@ -134,7 +134,7 @@ function toggleMode(forceMode = null) {
 
 // Microsoft 的 Monaco Editor
 // https://stackoverflow.com/questions/48934163/monaco-editor-set-font-size
-require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs' }});
+require.config({ paths: { 'vs': 'https://cdnjs.loli.net/ajax/libs/monaco-editor/0.20.0/min/vs' }});
 require.config({
     'vs/nls': {
         availableLanguages: {
@@ -160,9 +160,11 @@ require(['vs/editor/editor.main'], () => {
     window.editor = monaco.editor.create(document.getElementById("editorContainer"), {
         theme: 'vs-darker',
         fontSize: "16px",
+	    mouseWheelZoom: true,
         model: monaco.editor.createModel(str, "python"),
         wordWrap: 'on',
         automaticLayout: true,
+        fontFamily: '"Fira Code", "Noto Sans SC", monospace',
         scrollbar: {
             vertical: 'auto'
         }
