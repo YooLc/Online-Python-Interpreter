@@ -1,4 +1,4 @@
-# 在线 Python 编程 (Online Python Interpreter)
+# PyOnline 在线 Python 编程
 ## 截图
 ![screenshot.png](screenshot.png)
 
@@ -12,13 +12,14 @@
 ## 说明
 - Python 的解释器是依靠 [Skulpt](https://github.com/skulpt/skulpt) 使用 Javascript 模拟的，有可能和 CPython 有区别。
 - 界面写的比较丑，一是不会设计，二是不熟悉css = =
+- 体验网址 [pyol.cf](http://pyol.cf) (特意注册了个短域名= =)
 
 ## 感谢
 
 - [Skulpt](https://github.com/skulpt/skulpt)
 - [html2canvas](https://github.com/niklasvh/html2canvas)
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/)
-- [iziToast])(https://www.izitoast.cn/)
+- [iziToast](https://www.izitoast.cn/)
 
 ## (F)AQ（因为没人问）
 **Q:** 你这个 xx 按钮/xx 提示框 怎么被 盖住了/错位了？
