@@ -1,20 +1,23 @@
 <!DOCTYPE html>
+<html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
     <meta property="og:title" content="Python 在线编程">
     <meta name="theme" content="dark">
     <meta name="keywords" content="Python,在线编程">
-    <title>Python 在线编程</title>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>PyOnline 在线编程</title>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
     <link rel="stylesheet" href="res/style.css">
     <script src="res/html2canvas.min.js"></script>
     <script src="https://cdnjs.loli.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 </head>
 <body>
     <div class="desc">
-        <i class="fa fa-code"></i> Python Online 在线编程
+        <p id="title"><i class="fa fa-code"></i> Python Online 在线编程</p>
     </div>
-    <div id="infoBar"></div>
-    
     <div class="ctlPanel">
         <span class="ctlbtn" onclick="runCode()"> <i class="fa fa-caret-right"></i> 运行</span>
         <span class="ctlbtn" onclick="screenShot()"> <i class="fa fa-camera"></i> 截图</span>
@@ -41,3 +44,4 @@
     <script src="https://cdnjs.loli.net/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
     <script src="res/script.js"></script>
 </footer>
+</html>

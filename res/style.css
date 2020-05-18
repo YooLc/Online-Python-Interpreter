@@ -43,6 +43,11 @@ html, body {
     background-color: #252526;
     color: #ecdebd;
     box-shadow: 0px 3px 5px 3px rgba(2, 2, 2, 0.692);
+    user-select: none;
+}
+
+#title {
+    display: inline;
 }
 
 .mainContainer {
@@ -191,7 +196,7 @@ html, body {
     top: 0;
 }
 
-/* 手机 */
+/* 竖屏 */
 @media screen and (orientation: portrait) {
     .mainContainer {
         flex-direction: column;
@@ -199,5 +204,12 @@ html, body {
     #outputContainer, #turtleCanvas {
         width: 500px;
         height: 500px;
+    }
+    
+}
+
+@media screen and (max-width: 1020px) {
+    #title {
+        display: none;
     }
 }
